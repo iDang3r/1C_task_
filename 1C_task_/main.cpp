@@ -216,8 +216,11 @@ int main(int argc, const char* argv[]) {
     w(result_sz);
     for (int v1 = 0; v1 < result_sz; ++v1) {
         for (int v2 = v1 + 1; v2 < result_sz; ++v2) {
-            for (int v3 = v2 + 1; v3 < result_sz; ++v3) {
+            for (int v3 = 0; v3 < result_sz; ++v3) {
                 for (int v4 = v3 + 1; v4 < result_sz; ++v4) {
+                    if (v1 == v3 || v1 == v4 || v2 == v3 || v2 == v4) {
+                        continue;
+                    }
                     if (intersect(result[v1], result[v2], result[v3], result[v4])) {
                         ++RESULT;
                     }
@@ -226,7 +229,7 @@ int main(int argc, const char* argv[]) {
         }
     }
     
-    std::cout << "Result is " << RESULT << std::endl;
+    std::cout << "Result is " << RESULT / 2 << std::endl;
     
     for (auto [x, y] : result) {
 
